@@ -1,4 +1,4 @@
-# MGT 408 · HW5 — Campus Customs multi-agent operations
+# MGT 409 · HW5 — Campus Customs multi-agent operations
 
 Everything is in [`hw5/`](hw5/). Start with [`hw5/README.md`](hw5/README.md) for setup and run steps (MCP server, FastAPI backend, React board, and resetting the database).
 

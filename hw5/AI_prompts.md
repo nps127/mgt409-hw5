@@ -225,13 +225,13 @@ _(none yet)_
 > Problem 11: Submit to GitHub.  We need to push the code to a public github repository so the graders can clone it.  i need the repo url that i can submit on canvas and also put it in output/github_url.txt.  Do not push the real .env to the github repo.  We do need to include both database files under data/ so the graders can run the app easily.  Attached image is the expected layout.  REAMME should explain - copy original DB to the working copy when you need a clean run, start MCP server, start FastAPI backend, start the React board, reset the DB before a full three ticket run
 
 **What was lacking:**
-The prompt didn't name the repo. Following HW4 (`mtg408-hw4`), the vibe coder made a dedicated public repo, `mtg408-hw5`, containing only `hw5/`, so the private course repo stays private.
+The prompt didn't name the repo. Following HW4 (`mtg408-hw4`), the vibe coder made a dedicated public repo containing only `hw5/`, so the private course repo stays private. It was first named `mtg408-hw5` and then relabeled to `mgt409-hw5` (MGT 409).
 
 **Follow-up prompts typed:**
-_(none yet)_
+> can you relabel to MGT 409
 
 **Evidence of work:**
-- Public repo: https://github.com/nps127/mtg408-hw5 (also in `output/github_url.txt`). It contains `hw5/` in the expected layout plus a short root README.
+- Public repo: https://github.com/nps127/mgt409-hw5 (also in `output/github_url.txt`). It contains `hw5/` in the expected layout plus a short root README.
 - Both databases are committed (`data/campus_customs.db` and `data/campus_customs_new.db`). `.gitignore` no longer excludes `data/*.db`.
 - The real `.env` is not in the repo, and only `.env.example` with placeholders is. Before pushing, every file was scanned for the real Portkey key and common token patterns, with no hits. `.venv/`, `node_modules/`, and caches were excluded.
 - `README.md` explains setup, copying the original DB to the working copy, starting the MCP server, the FastAPI backend and the React board, and resetting before a full three-ticket run.
