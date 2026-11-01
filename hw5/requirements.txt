@@ -1,0 +1,6 @@
+# HW5 dependencies — add more as problems need them
+pydantic-ai-slim[openai]
+python-dotenv
+fastmcp>=2.0.0
+fastapi
+uvicorn[standard]

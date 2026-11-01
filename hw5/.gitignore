@@ -1,0 +1,35 @@
+# Secrets — never commit real keys
+.env
+.env.local
+frontend/.env
+.env.*.local
+
+# Data: both databases ARE committed (graders need them). Keep stray images out.
+data/*.db-journal
+data/*.db.tmp
+data/**/*.jpg
+data/**/*.jpeg
+data/**/*.png
+data/**/*.webp
+data/**/*.gif
+
+# Python
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+
+# Node / Vite
+node_modules/
+frontend/dist/
+frontend/node_modules/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp

@@ -1,0 +1,63 @@
+{
+  "server": "campus-customs",
+  "server_path": "hw5/mcp_server/server.py",
+  "database": "hw5/data/campus_customs_new.db",
+  "tested_on": "2026-10-31",
+  "method": "Each tool was called by the vibe coder through the campus-customs MCP connection in .mcp.json. Each output was then checked against the database with sqlite3.",
+  "tests": [
+    {
+      "ticket": 101,
+      "prompt": "Using the campus-customs MCP tools, test check_stock(\"CC-TEE-WHITE\",\"S\") for ticket 101 and check the output against hw5/data/campus_customs_new.db.",
+      "tool": "check_stock",
+      "arguments": {"sku": "CC-TEE-WHITE", "size": "S"},
+      "tool_output": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "found": true,
+        "rows": [
+          {"sku": "CC-TEE-WHITE", "name": "Classic Bulldog Tee", "size": "S", "qty": 0, "location": "Aisle B"}
+        ]
+      },
+      "database_check": {
+        "query": "SELECT sku, name, size, qty, location FROM inventory WHERE sku='CC-TEE-WHITE' AND size='S';",
+        "values": {"sku": "CC-TEE-WHITE", "name": "Classic Bulldog Tee", "size": "S", "qty": 0, "location": "Aisle B"}
+      },
+      "match": true
+    },
+    {
+      "ticket": 102,
+      "prompt": "Using the campus-customs MCP tools, test get_lease(1) for ticket 102 and check the output against hw5/data/campus_customs_new.db.",
+      "tool": "get_lease",
+      "arguments": {"lease_id": 1},
+      "tool_output": {
+        "lease_id": 1,
+        "found": true,
+        "lease": {"id": 1, "space_name": "Chapel Street shop", "landlord": "Elm City Properties", "monthly_rent": 2400, "next_due": "2026-09-02", "notes": null}
+      },
+      "database_check": {
+        "query": "SELECT id, space_name, landlord, monthly_rent, next_due, notes FROM leases WHERE id=1;",
+        "values": {"id": 1, "space_name": "Chapel Street shop", "landlord": "Elm City Properties", "monthly_rent": 2400.0, "next_due": "2026-09-02", "notes": null}
+      },
+      "match": true,
+      "note": "monthly_rent is stored as REAL 2400.0, and the tool returns it as 2400 (same value). notes IS NULL in the database."
+    },
+    {
+      "ticket": 103,
+      "prompt": "Using the campus-customs MCP tools, test get_pricing(\"CC-HOOD-NAVY\") for ticket 103 and check the output against hw5/data/campus_customs_new.db.",
+      "tool": "get_pricing",
+      "arguments": {"sku": "CC-HOOD-NAVY"},
+      "tool_output": {
+        "sku": "CC-HOOD-NAVY",
+        "found": true,
+        "pricing": {"sku": "CC-HOOD-NAVY", "unit_cost": 22, "list_price": 58, "unit_margin": 36}
+      },
+      "database_check": {
+        "query": "SELECT sku, unit_cost, list_price, list_price - unit_cost AS unit_margin FROM pricing WHERE sku='CC-HOOD-NAVY';",
+        "values": {"sku": "CC-HOOD-NAVY", "unit_cost": 22.0, "list_price": 58.0, "unit_margin": 36.0}
+      },
+      "match": true,
+      "note": "unit_margin is not a stored column. The tool computes it as list_price - unit_cost, and the database gives the same 36.0."
+    }
+  ],
+  "all_match": true
+}
